@@ -10,8 +10,8 @@ export const MENU  = [
   {
     id: '1',
     icon: 'dashboard',
-    name: '仪表盘',
-    route: '/dashboard'
+    name: '首页',
+    route: '/home'
   },
   // {
   //   id: '2',
