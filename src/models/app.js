@@ -10,10 +10,10 @@ const { pathToRegexp } = require("path-to-regexp")
 
 const { logoutUser, queryUserInfo } = api
 
-const goDashboard = () => {
+const goHome = () => {
   if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
     history.push({
-      pathname: '/dashboard',
+      pathname: '/home',
     })
   }
 }
@@ -63,7 +63,7 @@ const app = {
       const { errno, data } = yield call(queryUserInfo)
       if (!errno) {
         store.set('user', data)
-        goDashboard()
+        goHome()
       } else if (queryLayout(config.layouts, locationPathname) !== 'public') {
         history.push({
           pathname: '/login',

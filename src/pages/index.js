@@ -3,7 +3,7 @@ import { Redirect } from 'umi'
 
 class Index extends PureComponent {
   render() {
-    return <Redirect to='/dashboard'/>
+    return <Redirect to='/home'/>
   }
 }
 

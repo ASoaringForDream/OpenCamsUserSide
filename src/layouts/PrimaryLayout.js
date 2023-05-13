@@ -24,11 +24,10 @@ class PrimaryLayout extends PureComponent {
   }
 
   render() {
-    const { app, dispatch, children, location } = this.props
-    const { theme, collapsed, notifications } = app
+    const { app, dispatch, children } = this.props
+    const { collapsed, notifications } = app
     const user = store.get('user') || {}
     const { onCollapseChange } = this
-    const role = user?.role_ids?.role_ids || []
 
     const headerProps = {
       collapsed,
@@ -53,10 +52,12 @@ class PrimaryLayout extends PureComponent {
             id="primaryLayout"
           >
             <Header {...headerProps} />
+            <div className={styles.contentWrapper}>
             <Content className={styles.content}>
               <Bread menus={MENU} />
               { children }
             </Content>
+            </div>
             <FloatButton.BackTop
               className={styles.backTop}
               target={() => document.querySelector('#primaryLayout')}
