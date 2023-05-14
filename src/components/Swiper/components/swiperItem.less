@@ -1,6 +1,44 @@
+@import '~themes/vars.less';
+
 .swiperItem {
   background-color: aqua;
   width: 100vw;
   // height: 100vh;
   flex-shrink: 0;
+  position: relative;
+  .info {
+    z-index: 10000;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    // width: 500px;
+    transform: translateX(-50%);
+    h1 {
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      color: #1677ff;
+      .text-gradient();
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+    .button {
+      margin-top: 80px;
+      transition: all 0.3s;
+      background-color: rgba(244, 67, 54, 0.4);
+    }
+    .button:hover {
+      background-color: rgb(244, 67, 54);
+      border-color: #f44336;
+      color: white;
+      opacity: 1;
+    }
+  }
 }

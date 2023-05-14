@@ -31,6 +31,7 @@ const app = {
   subscriptions: {
     setup({ dispatch }) {
       dispatch({ type: 'query' })
+      dispatch({ type: 'queryCamTags' })
     },
     setupHistory({ dispatch, history }) {
       history.listen(location => {

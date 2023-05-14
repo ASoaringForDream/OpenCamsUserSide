@@ -9,13 +9,26 @@ const { querySwiper, queryCams } = api
 const login = modelExtend(pageModel, {
   namespace: 'home',
 
-  state: {},
+  state: {
+    pagination: {
+      current: 1,
+      pageSize: 10,
+      total: 0
+    },
+    swiperList: [],
+    camList: []
+  },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
         if (pathToRegexp('/home').exec(location.pathname)) {
+          const payload = location.query
           dispatch({
             type: 'querySwiper'
+          })
+          dispatch({
+            type: 'queryCams',
+            payload
           })
         }
       })
@@ -34,23 +47,20 @@ const login = modelExtend(pageModel, {
       }
     },
     *queryCams({ payload }, { select, put, call }) {
-      const { pagination } = yield select(app => app.cam)
+      const { pagination } = yield select(app => app.home)
       const { errno, errmsg, data } = yield call(queryCams, {
-        id: payload?.id,
-        tit: payload?.tit,
-        mainTag: payload?.mainTag,
         current: Number(payload?.page) || pagination.current || 1,
         pageSize: Number(payload?.pageSize) || pagination.pageSize || 10,
       })
-
+      console.log(data);
       if(!errno) {
         yield put({
-          type: 'querySuccess',
+          type: 'updateState',
           payload: {
-            list: data.data,
+            camList: data.data,
             pagination: {
               current: Number(payload?.page) || pagination.current || 1,
-              pageSize: Number(payload?.pageSize) || 10,
+              pageSize: Number(payload?.pageSize) || pagination.pageSize || 10,
               total: data.total,
             },
           }

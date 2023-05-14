@@ -2,4 +2,16 @@
   background-color: aqua;
   width: 100vw;
   flex-shrink: 0;
+  position: relative;
+}
+.swiperItem .info {
+  z-index: 10000;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.swiperItem .info h2 {
+  text-transform: uppercase;
+  color: #1677ff;
 }

@@ -8,7 +8,9 @@ import SwiperItem from './components/swiperItem'
 const Swiper = ({
   cams,
   divide = 3000,
-  animDuration = 300
+  animDuration = 300,
+  tagList,
+  mainTagList
 }) => {
   const [camsClone, setCamClone] = useState(cams)
   useEffect(() => {
@@ -75,10 +77,8 @@ const Swiper = ({
     handleScroll()
     setTimer(setInterval(() => handleScroll(), divide))
   }
-  const go = (idx) => {
 
-  }
-  if (imgLoaded === camsClone.length && !timer) {
+  if (imgLoaded === camsClone?.length && !timer) {
     const length = Math.ceil(-swiper.current.offsetWidth / camsClone.length)
     swiper.current.style.transform = `translate3d(${length}px,0,0)`
     swiper.current.style.transition = "transform " + animDuration + "ms"
@@ -87,18 +87,18 @@ const Swiper = ({
   return (
     <div className={styles.swiperwrapper}>
       <div ref={swiper} className={styles.swiper} style={{
-        width: `${camsClone.length * 100}vw`
+        width: `${camsClone?.length * 100}vw`
       }}>
         {
-          camsClone.map(i => (
-            <SwiperItem cam={i} imgLoadedCallBack={imgLoadedCallBack} />
+          camsClone?.map(i => (
+            <SwiperItem tagList={tagList} mainTagList={mainTagList} cam={i} imgLoadedCallBack={imgLoadedCallBack} />
           ))
         }
       </div>
       <div className={styles.leftBtn} onClick={goBack}><LeftOutlined className={styles.icon} /></div>
       <div className={styles.rightBtn} onClick={goNext}><RightOutlined className={styles.icon} /></div>
       <div className={styles.circle}>
-        {cams.map((_, idx) => {
+        {cams?.map((_, idx) => {
           const handleClick = () => {
             clearInterval(timer)
             current.current = idx
