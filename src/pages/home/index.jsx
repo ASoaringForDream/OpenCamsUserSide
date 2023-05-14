@@ -1,117 +1,20 @@
 import React from 'react'
+import { connect } from 'umi'
+import Swiper from 'components/Swiper'
 
 
-const Home = () => {
-
+const Home = ({
+  home,
+  loading,
+  dispatch
+}) => {
+  const { swiperList } = home
+  console.log(home);
   return (
     <>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
-    <div>
-      home
-    </div>
+      <Swiper cams={swiperList} />
     </>
   )
 }
 
-export default Home
+export default connect(({ home, loading, dispatch }) => ({ home, loading, dispatch }))(Home)

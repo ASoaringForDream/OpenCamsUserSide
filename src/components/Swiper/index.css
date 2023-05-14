@@ -1,0 +1,68 @@
+.swiperwrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.swiperwrapper .swiper {
+  width: auto;
+  display: flex;
+}
+.swiperwrapper .leftBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.swiperwrapper .leftBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.swiperwrapper .rightBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.swiperwrapper .rightBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.swiperwrapper .icon {
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  color: white;
+}
+.swiperwrapper .icon svg {
+  width: 45px;
+  height: 45px;
+}
+.swiperwrapper .circle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.swiperwrapper .circle .circleItem {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 4px;
+  border-radius: 8px;
+  background-color: #8b8990;
+  cursor: pointer;
+}
+.swiperwrapper .circle .active {
+  background-color: white;
+}

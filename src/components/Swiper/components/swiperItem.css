@@ -1,0 +1,5 @@
+.swiperItem {
+  background-color: aqua;
+  width: 100vw;
+  flex-shrink: 0;
+}

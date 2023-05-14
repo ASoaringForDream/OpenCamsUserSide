@@ -5,10 +5,9 @@ const PATH_MAP = {
   loginUser: 'POST /user/login',
   addUser: 'POST /user/adduser',
 
-  queryManagerList: '/manager/managers',
-  addManager: 'POST /manager/addmanager',
-  deleteManager: 'DELETE /manager/deletemanager',
-  eidtManager: 'POST /manager/editmanager',
+  querySwiper: '/user/swiper',
+  queryCams: '/user/cams',
+  queryCamTags: '/user/camTags',
 
   queryRole: '/manager/roles',
   queryRoleList: '/manager/rolelist',

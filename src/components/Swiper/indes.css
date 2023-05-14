@@ -1,0 +1,9 @@
+.swiperwrapper {
+  position: absolute;
+  top: -72px;
+  width: 100vw;
+  height: 100vh;
+}
+.swiperwrapper .swiper-item {
+  background-color: aqua;
+}
