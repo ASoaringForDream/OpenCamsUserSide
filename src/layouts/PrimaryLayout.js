@@ -52,9 +52,9 @@ class PrimaryLayout extends PureComponent {
           >
             <Header {...headerProps} />
             <div className={styles.contentWrapper}>
-            <Content className={styles.content}>
-              { children }
-            </Content>
+              <Content className={styles.content}>
+                {children}
+              </Content>
             </div>
             <FloatButton.BackTop
               className={styles.backTop}

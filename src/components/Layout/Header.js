@@ -15,6 +15,22 @@ import TopMenu from './Menu'
 import styles from './Header.less'
 
 class Header extends PureComponent {
+  state = {
+    isTop: true
+  }
+  componentDidMount() {
+    window.addEventListener('scroll',(e) => {
+      if(document.documentElement.scrollTop === 0) {
+        this.setState({
+          isTop: true
+        })
+      } else if(this.state.isTop === true){
+        this.setState({
+          isTop: false
+        })
+      }
+    });
+  }
   handleSignOut = () => {
     this.props.onSignOut()
   }
@@ -114,8 +130,10 @@ class Header extends PureComponent {
         className={classnames(styles.header, {
           [styles.fixed]: fixed,
           [styles.collapsed]: collapsed,
+          [styles.headertransparent]: this.state.isTop,
+          [styles.headerwhite]: !this.state.isTop
         })}
-        style={{ height: 72, backgroundColor: 'white', paddingInline: 0 }}
+        style={{ height: 72, paddingInline: 0 }}
         id="layoutHeader"
       >
         <div className={styles.wrapper}>

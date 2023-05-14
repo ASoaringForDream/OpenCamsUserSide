@@ -174,13 +174,13 @@ img.onload = function () {
   startSakura();
 };
 
-function stopp() {
-  if (staticx) {
-    const child = document.getElementById("canvas_sakura");
-    child.parentNode.removeChild(child);
-    window.cancelAnimationFrame(stop);
-    staticx = false;
-  } else {
-    startSakura();
-  }
-}
+// function stopp() {
+//   if (staticx) {
+//     const child = document.getElementById("canvas_sakura");
+//     child.parentNode.removeChild(child);
+//     window.cancelAnimationFrame(stop);
+//     staticx = false;
+//   } else {
+//     startSakura();
+//   }
+// }

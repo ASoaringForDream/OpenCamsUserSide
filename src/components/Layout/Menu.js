@@ -51,6 +51,9 @@ class TopMenu extends PureComponent {
         mode="horizontal"
         theme='light'
         selectedKeys={selectedKeys}
+        style={{
+          backgroundColor: 'transparent'
+        }}
       >
         {this.generateMenus(MENU)}
       </Menu>
