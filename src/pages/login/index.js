@@ -1,20 +1,38 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'umi'
-import { Button, Row, Input, Form } from 'antd'
+import { Button, Row, Input, Form, Modal } from 'antd'
 import { GlobalFooter } from 'components'
 import config from 'utils/config'
-
+import AddUser from './components/add'
 import styles from './index.less'
 
 const FormItem = Form.Item
 
 @connect(({ loading, dispatch }) => ({ loading, dispatch }))
 class Login extends PureComponent {
+  state = {
+    isModalOpen: false
+  }
+  showModal = () => {
+    this.setState({
+      isModalOpen: true
+    })
+  };
+  handleOk = () => {
+    this.setState({
+      isModalOpen: false
+    })
+  };
+  handleCancel = () => {
+    this.setState({
+      isModalOpen: false
+    })
+  };
 
   render() {
     const { dispatch, loading } = this.props
-    
+
     const handleOk = values => {
       dispatch({ type: 'login/login', payload: values })
     }
@@ -28,12 +46,12 @@ class Login extends PureComponent {
           </div>
           <Form
             onFinish={handleOk}
-            >
-            <FormItem name="username" 
+          >
+            <FormItem name="username"
               rules={[{ required: true }]} hasFeedback>
-                <Input
-                  placeholder="用户名"
-                />
+              <Input
+                placeholder="用户名"
+              />
             </FormItem>
             <FormItem name="password" rules={[{ required: true }]} hasFeedback>
               <Input type='password' placeholder="密码" />
@@ -48,10 +66,16 @@ class Login extends PureComponent {
               </Button>
             </Row>
           </Form>
+          <Button type='link' style={{ marginTop: 10 }} onClick={this.showModal}>
+            注册用户
+          </Button>
         </div>
         <div className={styles.footer}>
           <GlobalFooter copyright={config.copyright} />
         </div>
+        <Modal title="创建用户" open={this.state.isModalOpen} onCancel={this.handleCancel} footer={null}>
+          <AddUser handleOk={this.handleOk} />
+        </Modal>
       </Fragment>
     )
   }

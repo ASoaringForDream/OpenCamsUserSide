@@ -1,6 +1,6 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Layout, Avatar, Popover, Badge, List } from 'antd'
+import { Layout, Avatar, Popover, Badge, List, Dropdown } from 'antd'
 import { Ellipsis } from 'components'
 import {
   BellOutlined,
@@ -14,11 +14,9 @@ import { config } from 'utils'
 import TopMenu from './Menu'
 import styles from './Header.less'
 
-const { SubMenu } = Menu
-
 class Header extends PureComponent {
-  handleClickMenu = e => {
-    e.key === 'SignOut' && this.props.onSignOut()
+  handleSignOut = () => {
+    this.props.onSignOut()
   }
   render() {
     const {
@@ -31,24 +29,33 @@ class Header extends PureComponent {
       onAllNotificationsRead,
     } = this.props
 
+    const items = [
+      {
+        key: 'editUserInfo',
+        label: '修改个人信息'
+      },
+      {
+        key: 'SignOut',
+        label: (
+          <span onClick={this.handleSignOut}>退出</span>
+        )
+      },
+    ]
     const rightContent = [
-      <Menu key="user" mode="horizontal" onClick={this.handleClickMenu}>
-        <SubMenu
-          title={
-            <Fragment>
-              <span style={{ color: '#999', marginRight: 4 }}>
-                你好,
-              </span>
-              <span>{username}</span>
-              <Avatar style={{ marginLeft: 8 }} src={avatar} />
-            </Fragment>
-          }
-        >
-          <Menu.Item key="SignOut">
-            退出
-          </Menu.Item>
-        </SubMenu>
-      </Menu>,
+      <Dropdown
+        menu={{
+          items,
+        }}
+        placement="bottomRight"
+      >
+        <a href=' ' onClick={(e) => e.preventDefault()}>
+          <span style={{ color: '#999', marginRight: 4, paddingLeft: 20 }}>
+            你好,
+          </span>
+          <span style={{ color: '#000' }}>{username}</span>
+          <Avatar style={{ marginLeft: 8 }} src={avatar} />
+        </a>
+      </Dropdown>
     ]
 
     rightContent.unshift(
@@ -111,24 +118,26 @@ class Header extends PureComponent {
         style={{ height: 72, backgroundColor: 'white', paddingInline: 0 }}
         id="layoutHeader"
       >
-        <div className={styles.brand}>
-          <div className={styles.logo} >
-            <img alt="logo" src={config.logoPath} />
-            <h1 style={{
-              width: collapsed ? '0' : '150px',
-              transition: 'all 0.3s ease-out'
-            }}>{ !collapsed && config.siteName}</h1>
+        <div className={styles.wrapper}>
+          <div className={styles.brand}>
+            <div className={styles.logo} >
+              <img alt="logo" src={config.logoPath} />
+              <h1 style={{
+                width: collapsed ? '0' : '150px',
+                transition: 'all 0.3s ease-out'
+              }}>{!collapsed && config.siteName}</h1>
+            </div>
+            <div
+              className={styles.button}
+              onClick={onCollapseChange.bind(this, !collapsed)}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </div>
           </div>
-          <div
-            className={styles.button}
-            onClick={onCollapseChange.bind(this, !collapsed)}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          <div className={styles.rightContainer}>
+            <TopMenu />
+            {rightContent}
           </div>
-        </div>
-        <div className={styles.rightContainer}>
-          <TopMenu />
-          {rightContent}
         </div>
       </Layout.Header>
     )

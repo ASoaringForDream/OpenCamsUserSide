@@ -3,6 +3,7 @@ const PATH_MAP = {
   queryUserInfo: 'POST /user/session',
   logoutUser: 'DELETE /user/logout',
   loginUser: 'POST /user/login',
+  addUser: 'POST /user/adduser',
 
   queryManagerList: '/manager/managers',
   addManager: 'POST /manager/addmanager',
@@ -13,7 +14,6 @@ const PATH_MAP = {
   queryRoleList: '/manager/rolelist',
 
   queryUserList: '/manager/users',
-  addUser: 'POST /manager/adduser',
   deleteUser: 'DELETE /manager/deleteuser',
   eidtUser: 'POST /manager/edituser',
   banUser: 'POST /manager/banuser',

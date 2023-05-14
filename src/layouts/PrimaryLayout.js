@@ -5,12 +5,11 @@ import { connect } from 'umi'
 import { MyLayout, GlobalFooter } from 'components'
 import { FloatButton, Layout } from 'antd';
 import { config } from 'utils'
-import { MENU } from 'utils/constant'
 import styles from './PrimaryLayout.less'
 import store from 'store'
 
 const { Content } = Layout
-const { Header, Bread } = MyLayout
+const { Header } = MyLayout
 
 @withRouter
 @connect(({ app, loading }) => ({ app, loading }))
@@ -54,7 +53,6 @@ class PrimaryLayout extends PureComponent {
             <Header {...headerProps} />
             <div className={styles.contentWrapper}>
             <Content className={styles.content}>
-              <Bread menus={MENU} />
               { children }
             </Content>
             </div>

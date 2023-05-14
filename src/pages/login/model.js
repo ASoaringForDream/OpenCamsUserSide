@@ -2,7 +2,7 @@ import { message } from 'antd'
 import api from 'api'
 const { pathToRegexp } = require("path-to-regexp")
 
-const { loginUser } = api
+const { loginUser, addUser } = api
 
 const login = {
   namespace: 'login',
@@ -24,6 +24,15 @@ const login = {
           type: 'app/query'
         })
         message.success('登录成功')
+      }else {
+        message.error(errmsg)
+      }
+    },
+    *addUser({ payload, cb }, { call }) {
+      const { errno, errmsg } = yield call(addUser, payload)
+      if(!errno) {
+        cb && cb()
+        message.success('创建成功')
       }else {
         message.error(errmsg)
       }
