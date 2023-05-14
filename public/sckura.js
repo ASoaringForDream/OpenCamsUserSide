@@ -160,7 +160,7 @@ function startSakura() {
     cxt.clearRect(0, 0, canvas.width, canvas.height);
     sakuraList.update();
     sakuraList.draw(cxt);
-    stop = requestAnimationFrame(this.arguments.callee);
+    stop = requestAnimationFrame(arguments.callee);
   });
 }
 

@@ -8,7 +8,7 @@ import { zh, en, pt } from 'make-plural/plurals'
 import zhCN from 'antd/lib/locale/zh_CN'
 import enUS from 'antd/lib/locale/en_US'
 import ptBR from 'antd/lib/locale/pt_BR'
-import './sckura.js'
+// import '../../public/sckura.js'
 
 import BaseLayout from './BaseLayout'
 
@@ -33,7 +33,6 @@ class Layout extends Component {
   }
 
   componentDidMount() {
-    console.log(11111111111111);
     let script = document.createElement('script')
     script.src = '/sckura.js'
     document.documentElement.appendChild(script)
