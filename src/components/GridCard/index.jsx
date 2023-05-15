@@ -54,7 +54,7 @@ const GridCard = ({
         }
       >
         <Meta
-          title={`${cam.tit.replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}
+          title={`${cam.tit.replace('摄像头', '').replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}
           description={randerDescription()}
         />
 

@@ -54,7 +54,7 @@ const Cam = ({
   return (
     <>
       <Card className={styles.wrpper}>
-        <h1>{cam.tit.replace('era', '摄像头')}</h1>
+        <h1>{cam.tit.replace('摄像头', '').replace('era', '摄像头')}</h1>
         <Divider />
         <div className={styles.addrWrapper}>
           <div>

@@ -1,4 +1,3 @@
-
 const PATH_MAP = {
   queryUserInfo: 'POST /user/session',
   logoutUser: 'DELETE /user/logout',
@@ -16,7 +15,9 @@ const PATH_MAP = {
   clickCam: 'POST /user/clickcam',
 
   queryCollect: '/user/querycollect',
-  queryHistory: '/user/queryhistory'
+  queryHistory: '/user/queryhistory',
+
+  editUser: 'POST /user/edituser',
 }
 
 export default PATH_MAP

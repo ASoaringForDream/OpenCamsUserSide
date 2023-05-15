@@ -29,7 +29,7 @@ class TopMenu extends PureComponent {
       }
       return (
         <Menu.Item key={item.id}>
-          <NavLink to={item.route}>
+          <NavLink to={item.route} onClick={() => window.scrollTo(0, 0)}>
             {item.icon && iconMap[item.icon]}
             <span>{item.name}</span>
           </NavLink>

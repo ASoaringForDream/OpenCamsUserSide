@@ -29,7 +29,7 @@ const SwiperItem = ({
     <div className={classnames(styles.swiperItem, { 'slide': true })}>
       <img style={{ width: '100%' }} onLoad={imgLoadedCallBack} alt='' src={`http://127.0.0.1:3389/manage/img/${cam.posterImg}`} />
       <div className={styles.info}>
-        <h1>{`${cam.tit.replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}</h1>
+        <h1>{`${cam.tit.replace('摄像头', '').replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}</h1>
         <div className={styles.tags}>
           <Tag color="red">{cam.country}</Tag>
           <Tag color="cyan">{cam.city}</Tag>
