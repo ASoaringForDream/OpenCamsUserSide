@@ -13,6 +13,24 @@ export const MENU  = [
     name: '首页',
     route: '/home'
   },
+  {
+    id: '2',
+    icon: 'cate',
+    name: '全部分类',
+    route: '/cate'
+  },
+  {
+    id: '3',
+    icon: 'recommend',
+    name: '猜你喜欢',
+    route: '/recommend'
+  },
+  {
+    id: '4',
+    icon: 'user',
+    name: '个人中心',
+    route: '/personal'
+  },
 ]
 
 export const SEX_MAP = [

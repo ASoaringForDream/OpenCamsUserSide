@@ -7,6 +7,7 @@ import { FloatButton, Layout } from 'antd';
 import { config } from 'utils'
 import styles from './PrimaryLayout.less'
 import store from 'store'
+const { pathToRegexp } = require("path-to-regexp")
 
 const { Content } = Layout
 const { Header } = MyLayout
@@ -23,7 +24,7 @@ class PrimaryLayout extends PureComponent {
   }
 
   render() {
-    const { app, dispatch, children } = this.props
+    const { app, dispatch, children, location } = this.props
     const { collapsed, notifications } = app
     const user = store.get('user') || {}
     const { onCollapseChange } = this
@@ -35,6 +36,7 @@ class PrimaryLayout extends PureComponent {
       avatar: user.userpic,
       username: user.name,
       fixed: config.fixedHeader,
+      isHome: pathToRegexp('/home').exec(location.pathname),
       onAllNotificationsRead() {
         dispatch({ type: 'app/allNotificationsRead' })
       },

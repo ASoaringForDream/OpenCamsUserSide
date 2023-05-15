@@ -49,10 +49,15 @@ const login = modelExtend(pageModel, {
     *queryCams({ payload }, { select, put, call }) {
       const { pagination } = yield select(app => app.home)
       const { errno, errmsg, data } = yield call(queryCams, {
+        search: payload?.search,
+        mainTag: payload?.mainTag,
+        tag: payload?.tag,
+        city: payload?.city,
+        country: payload?.country,
+        state: payload?.state,
         current: Number(payload?.page) || pagination.current || 1,
         pageSize: Number(payload?.pageSize) || pagination.pageSize || 10,
       })
-      console.log(data);
       if(!errno) {
         yield put({
           type: 'updateState',

@@ -1,0 +1,31 @@
+.wrpper {
+  background-color: white;
+  width: 100%;
+  padding: 20px 20px 0 20px;
+}
+.wrpper h1 {
+  color: #1677ff;
+  font-size: 30px;
+  font-weight: 700;
+  display: inline-block;
+  white-space: nowrap;
+  background-image: -webkit-gradient(linear, 37.219838% 34.532506%, 36.425669% 93.178216%, from(#29cdff), to(#0a60ff), color-stop(0.37, #148eff));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wrpper .addrWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.wrpper .addrWrapper span {
+  padding: 4px;
+  font-size: 16px;
+}
+.camWrapper {
+  width: 100%;
+  margin: 10px 0;
+}
+.camWrapper .desc {
+  text-indent: 2em;
+  margin-top: 20px;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { Tag, Button } from 'antd'
+import { NavLink } from 'umi'
 import { EyeOutlined } from '@ant-design/icons'
 import styles from './swiperItem.less'
 
@@ -22,7 +23,9 @@ const SwiperItem = ({
             <Tag color="orange">{tagList?.find(item => item.id === i)?.name}</Tag>
           ))}
         </div>
-        <Button ghost size='large' icon={<EyeOutlined />} className={styles.button}>观看视频</Button>
+        <NavLink to={`/cam?id=${cam.id}`}>
+          <Button ghost size='large' icon={<EyeOutlined />} className={styles.button}>观看视频</Button>
+        </NavLink>
       </div>
     </div>
   )

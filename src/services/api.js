@@ -9,8 +9,7 @@ const PATH_MAP = {
   queryCams: '/user/cams',
   queryCamTags: '/user/camTags',
 
-  queryRole: '/manager/roles',
-  queryRoleList: '/manager/rolelist',
+  queryCam: '/user/cam',
 
   queryUserList: '/manager/users',
   deleteUser: 'DELETE /manager/deleteuser',

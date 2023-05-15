@@ -16,7 +16,9 @@ import {
   ApartmentOutlined,
   SolutionOutlined,
   KeyOutlined,
-  HomeOutlined
+  HomeOutlined,
+  AppstoreOutlined,
+  HeartOutlined
 } from '@ant-design/icons'
 
 const iconMap = {
@@ -37,7 +39,9 @@ const iconMap = {
   roleList: <ApartmentOutlined />,
   character: <SolutionOutlined />,
   role: <KeyOutlined />,
-  home: <HomeOutlined />
+  home: <HomeOutlined />,
+  cate: <AppstoreOutlined />,
+  recommend: <HeartOutlined />
 }
 
 export default iconMap

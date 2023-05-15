@@ -43,6 +43,7 @@ class Header extends PureComponent {
       notifications,
       onCollapseChange,
       onAllNotificationsRead,
+      isHome
     } = this.props
 
     const items = [
@@ -130,8 +131,8 @@ class Header extends PureComponent {
         className={classnames(styles.header, {
           [styles.fixed]: fixed,
           [styles.collapsed]: collapsed,
-          [styles.headertransparent]: this.state.isTop,
-          [styles.headerwhite]: !this.state.isTop
+          [styles.headertransparent]: this.state.isTop && isHome,
+          [styles.headerwhite]: !this.state.isTop || !isHome
         })}
         style={{ height: 72, paddingInline: 0 }}
         id="layoutHeader"

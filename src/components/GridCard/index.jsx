@@ -1,5 +1,6 @@
-import { Card, Col, Tag } from 'antd';
+import { Card, Tag } from 'antd';
 import React from 'react';
+import { NavLink } from 'umi';
 import styles from './index.less'
 const { Meta } = Card;
 
@@ -26,8 +27,8 @@ const GridCard = ({
     )
   }
   return (
-    <Col span={12}>
-      <Card 
+    <NavLink to={`/cam?id=${cam.id}`}>
+      <Card
         className={styles.card}
         bordered={false}
         cover={
@@ -38,12 +39,12 @@ const GridCard = ({
         }
       >
         <Meta
-          title={`${cam.tit}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}
+          title={`${cam.tit.replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}
           description={randerDescription()}
         />
-        
+
       </Card>
-    </Col>
+    </NavLink>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'umi'
-import { Row, Pagination } from 'antd'
+import { Row, Pagination, Col } from 'antd'
 import Swiper from 'components/Swiper'
 import GridCard from 'components/GridCard'
 
@@ -10,6 +10,7 @@ const Home = ({
   mainTagList,
   tagList,
   loading,
+  location,
   dispatch
 }) => {
   const { swiperList, camList, pagination } = home
@@ -27,6 +28,7 @@ const Home = ({
     dispatch({
       type: 'home/queryCams',
       payload: {
+        ...location.query,
         page,
         pageSize
       }
@@ -39,7 +41,9 @@ const Home = ({
         marginTop: '100vh'
       }}>
         {camList.map(i => (
-          <GridCard cam={i} mainTagList={mainTagList} tagList={tagList} />
+          <Col span={12}>
+            <GridCard cam={i} mainTagList={mainTagList} tagList={tagList} />
+          </Col>
         ))}
         <div className='middle-box'>
           <div>
