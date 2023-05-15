@@ -29,3 +29,21 @@
   text-indent: 2em;
   margin-top: 20px;
 }
+.camWrapper .icons {
+  display: flex;
+  justify-content: space-between;
+}
+.camWrapper .icons .right span {
+  display: inline-block;
+  margin: 0 10px;
+  height: 20px;
+  line-height: 20px;
+}
+.camWrapper .icons .right span svg {
+  vertical-align: bottom;
+}
+.camWrapper .icons .right span .count {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+}

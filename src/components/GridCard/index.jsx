@@ -1,5 +1,6 @@
 import { Card, Tag } from 'antd';
 import React from 'react';
+import store from 'store';
 import { NavLink } from 'umi';
 import styles from './index.less'
 const { Meta } = Card;
@@ -7,8 +8,21 @@ const { Meta } = Card;
 const GridCard = ({
   cam,
   mainTagList,
-  tagList
+  tagList,
+  dispatch
 }) => {
+
+  const handleClick = () => {
+    const user = store.get('user')
+    dispatch({
+      type: 'app/clickCam',
+      payload: {
+        cid: cam.id,
+        uid: user.id
+      }
+    })
+  }
+
   const randerDescription = () => {
     return (
       <>
@@ -27,7 +41,7 @@ const GridCard = ({
     )
   }
   return (
-    <NavLink to={`/cam?id=${cam.id}`}>
+    <NavLink to={`/cam?id=${cam.id}`} onClick={handleClick}>
       <Card
         className={styles.card}
         bordered={false}

@@ -8,7 +8,7 @@ import config from 'config'
 import { message } from 'antd'
 const { pathToRegexp } = require("path-to-regexp")
 
-const { logoutUser, queryUserInfo, queryCamTags } = api
+const { logoutUser, queryUserInfo, queryCamTags, clickCam } = api
 
 const goHome = () => {
   if (pathToRegexp(['/', '/login']).exec(window.location.pathname)) {
@@ -93,6 +93,12 @@ const app = {
         store.set('user', {})
         yield put({ type: 'query' })
       } else {
+        message.error(errmsg)
+      }
+    },
+    *clickCam({ payload }, { call }) {
+      const { errno, errmsg } = yield call(clickCam, payload)
+      if (errno) {
         message.error(errmsg)
       }
     },

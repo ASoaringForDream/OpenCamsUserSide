@@ -10,7 +10,8 @@ const Swiper = ({
   divide = 3000,
   animDuration = 300,
   tagList,
-  mainTagList
+  mainTagList,
+  dispatch
 }) => {
   const [camsClone, setCamClone] = useState(cams)
   useEffect(() => {
@@ -91,7 +92,7 @@ const Swiper = ({
       }}>
         {
           camsClone?.map(i => (
-            <SwiperItem tagList={tagList} mainTagList={mainTagList} cam={i} imgLoadedCallBack={imgLoadedCallBack} />
+            <SwiperItem dispatch={dispatch} tagList={tagList} mainTagList={mainTagList} cam={i} imgLoadedCallBack={imgLoadedCallBack} />
           ))
         }
       </div>

@@ -10,6 +10,10 @@ const PATH_MAP = {
   queryCamTags: '/user/camTags',
 
   queryCam: '/user/cam',
+  setLike: 'POST /user/setlike',
+  setDisLike: 'POST /user/setdislike',
+  setCollect: 'POST /user/setcollect',
+  clickCam: 'POST /user/clickcam',
 
   queryUserList: '/manager/users',
   deleteUser: 'DELETE /manager/deleteuser',

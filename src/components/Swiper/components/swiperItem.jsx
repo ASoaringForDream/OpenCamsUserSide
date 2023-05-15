@@ -3,14 +3,27 @@ import classnames from 'classnames'
 import { Tag, Button } from 'antd'
 import { NavLink } from 'umi'
 import { EyeOutlined } from '@ant-design/icons'
+import store from 'store'
 import styles from './swiperItem.less'
 
 const SwiperItem = ({
   cam,
   imgLoadedCallBack,
   tagList,
-  mainTagList
+  mainTagList,
+  dispatch
 }) => {
+  const handleClick = () => {
+    const user = store.get('user')
+    dispatch({
+      type: 'app/clickCam',
+      payload: {
+        cid: cam.id,
+        uid: user.id
+      }
+    })
+  }
+
   return (
     <div className={classnames(styles.swiperItem, { 'slide': true })}>
       <img style={{ width: '100%' }} onLoad={imgLoadedCallBack} alt='' src={`http://127.0.0.1:3389/manage/img/${cam.posterImg}`} />
@@ -23,7 +36,7 @@ const SwiperItem = ({
             <Tag color="orange">{tagList?.find(item => item.id === i)?.name}</Tag>
           ))}
         </div>
-        <NavLink to={`/cam?id=${cam.id}`}>
+        <NavLink to={`/cam?id=${cam.id}`} onClick={handleClick}>
           <Button ghost size='large' icon={<EyeOutlined />} className={styles.button}>观看视频</Button>
         </NavLink>
       </div>

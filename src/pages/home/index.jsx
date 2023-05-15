@@ -36,13 +36,13 @@ const Home = ({
   }
   return (
     <>
-      <Swiper cams={swiperList} tagList={tagList} mainTagList={mainTagList} />
+      <Swiper cams={swiperList} tagList={tagList} mainTagList={mainTagList} dispatch={dispatch} />
       <Row style={{
         marginTop: '100vh'
       }}>
         {camList.map(i => (
           <Col span={12}>
-            <GridCard cam={i} mainTagList={mainTagList} tagList={tagList} />
+            <GridCard cam={i} mainTagList={mainTagList} tagList={tagList} dispatch={dispatch} />
           </Col>
         ))}
         <div className='middle-box'>
