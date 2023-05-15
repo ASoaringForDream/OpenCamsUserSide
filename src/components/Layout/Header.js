@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Avatar, Popover, Badge, List, Dropdown } from 'antd'
+import { Layout, Avatar, Popover, Badge, List, Dropdown, Input } from 'antd'
+import { history } from 'umi'
 import { Ellipsis } from 'components'
 import {
   BellOutlined,
@@ -14,17 +15,19 @@ import { config } from 'utils'
 import TopMenu from './Menu'
 import styles from './Header.less'
 
+const { Search } = Input
+
 class Header extends PureComponent {
   state = {
     isTop: true
   }
   componentDidMount() {
-    window.addEventListener('scroll',(e) => {
-      if(document.documentElement.scrollTop === 0) {
+    window.addEventListener('scroll', (e) => {
+      if (document.documentElement.scrollTop === 0) {
         this.setState({
           isTop: true
         })
-      } else if(this.state.isTop === true){
+      } else if (this.state.isTop === true) {
         this.setState({
           isTop: false
         })
@@ -33,6 +36,9 @@ class Header extends PureComponent {
   }
   handleSignOut = () => {
     this.props.onSignOut()
+  }
+  onSearch = (val) => {
+    history.push(`/home${val ? `?search=${val}` : ''}`)
   }
   render() {
     const {
@@ -154,6 +160,14 @@ class Header extends PureComponent {
             </div>
           </div>
           <div className={styles.rightContainer}>
+            <Search
+              placeholder="input search text"
+              allowClear
+              onSearch={this.onSearch}
+              style={{
+                width: 200,
+              }}
+            />
             <TopMenu />
             {rightContent}
           </div>
