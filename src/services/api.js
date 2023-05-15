@@ -15,12 +15,8 @@ const PATH_MAP = {
   setCollect: 'POST /user/setcollect',
   clickCam: 'POST /user/clickcam',
 
-  queryUserList: '/manager/users',
-  deleteUser: 'DELETE /manager/deleteuser',
-  eidtUser: 'POST /manager/edituser',
-  banUser: 'POST /manager/banuser',
-
-  queryDashboard: '/dashboard',
+  queryCollect: '/user/querycollect',
+  queryHistory: '/user/queryhistory'
 }
 
 export default PATH_MAP

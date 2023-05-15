@@ -13,6 +13,7 @@ const GridCard = ({
 }) => {
 
   const handleClick = () => {
+    window.scrollTo(0, 0)
     const user = store.get('user')
     dispatch({
       type: 'app/clickCam',

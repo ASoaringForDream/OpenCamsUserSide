@@ -15,6 +15,7 @@ const Home = ({
 }) => {
   const { swiperList, camList, pagination } = home
   const handlePageChange = (page, pageSize) => {
+    window.scrollTo(0, 0)
     dispatch({
       type: 'cam/updateState',
       payload: {
