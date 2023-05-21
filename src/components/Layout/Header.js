@@ -55,7 +55,7 @@ class Header extends PureComponent {
     const items = [
       {
         key: 'editUserInfo',
-        label: <NavLink to='/edit'>修改个人信息</NavLink>
+        label: <NavLink to='/edit'>个人信息</NavLink>
       },
       {
         key: 'SignOut',

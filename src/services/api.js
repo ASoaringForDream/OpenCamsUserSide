@@ -18,6 +18,7 @@ const PATH_MAP = {
   queryHistory: '/user/queryhistory',
 
   editUser: 'POST /user/edituser',
+  queryRecommend: '/user/recommend'
 }
 
 export default PATH_MAP

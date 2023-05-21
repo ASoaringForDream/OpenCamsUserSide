@@ -64,7 +64,7 @@ const app = {
       const { errno, data } = yield call(queryUserInfo)
       if (!errno) {
         store.set('user', data)
-        if(locationQuery.from) {
+        if(String(locationQuery.from).trim()) {
           history.push({
             pathname: locationQuery.from,
           })
