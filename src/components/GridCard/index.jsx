@@ -1,7 +1,7 @@
 import { Card, Tag } from 'antd';
 import React from 'react';
 import store from 'store';
-import { NavLink } from 'umi';
+import { history } from 'umi';
 import styles from './index.less'
 const { Meta } = Card;
 
@@ -14,6 +14,8 @@ const GridCard = ({
 
   const handleClick = () => {
     window.scrollTo(0, 0)
+    store.set('cid', cam.id)
+    history.push(`/cam?id=${cam.id}`)
     const user = store.get('user')
     dispatch({
       type: 'app/clickCam',
@@ -42,8 +44,7 @@ const GridCard = ({
     )
   }
   return (
-    <NavLink to={`/cam?id=${cam.id}`} onClick={handleClick}>
-      <Card
+    <Card
         className={styles.card}
         bordered={false}
         cover={
@@ -52,6 +53,7 @@ const GridCard = ({
             src={`http://127.0.0.1:3389/manage/img/${cam.posterImg}`}
           />
         }
+        onClick={handleClick}
       >
         <Meta
           title={`${cam.tit.replace('摄像头', '').replace('era', '摄像头')}---${mainTagList?.find(i => i.id === cam.mainTag)?.name}`}
@@ -59,7 +61,6 @@ const GridCard = ({
         />
 
       </Card>
-    </NavLink>
   )
 }
 

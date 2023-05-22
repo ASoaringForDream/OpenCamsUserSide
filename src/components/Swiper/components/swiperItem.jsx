@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { Tag, Button } from 'antd'
-import { NavLink } from 'umi'
+import { history } from 'umi'
 import { EyeOutlined } from '@ant-design/icons'
 import store from 'store'
 import styles from './swiperItem.less'
@@ -15,6 +15,8 @@ const SwiperItem = ({
 }) => {
   const handleClick = () => {
     window.scrollTo(0, 0)
+    store.set('cid', cam.id)
+    history.push(`/cam?id=${cam.id}`)
     const user = store.get('user')
     dispatch({
       type: 'app/clickCam',
@@ -37,9 +39,7 @@ const SwiperItem = ({
             <Tag color="orange">{tagList?.find(item => item.id === i)?.name}</Tag>
           ))}
         </div>
-        <NavLink to={`/cam?id=${cam.id}`} onClick={handleClick}>
-          <Button ghost size='large' icon={<EyeOutlined />} className={styles.button}>观看视频</Button>
-        </NavLink>
+        <Button ghost size='large' icon={<EyeOutlined />} onClick={handleClick} className={styles.button}>观看视频</Button>
       </div>
     </div>
   )

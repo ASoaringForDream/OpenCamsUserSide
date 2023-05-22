@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, NavLink } from 'umi'
-import { Divider, Tag, Card, Tooltip, Row, Col } from 'antd'
+import { Divider, Tag, Card, Tooltip, Row, Col, Spin } from 'antd'
 import store from 'store'
 import GridCard from 'components/GridCard'
 import styles from './index.less'
@@ -10,9 +10,20 @@ const Cam = ({
   mainTagList,
   tagList,
   recommend,
-  dispatch
+  dispatch,
+  loading
 }) => {
 
+  const getSource = (source) => {
+    const params = source.split('?')[1].split('&')
+    for(let item of params) {
+      item = item.split('=')
+      if(item[0] === 'name') {
+        return '//www.earthcam.com/js/video/embed.php?vid=' + item[1]
+      }
+    }
+    return source
+  }
   const handleClick = (type, val) => {
     const user = store.get('user')
     switch(type){
@@ -52,9 +63,9 @@ const Cam = ({
   }
 
   return (
-    <>
+    <Spin spinning={loading.effects['cam/queryCam']}>
       <Card className={styles.wrpper}>
-        <h1>{cam.tit.replace('摄像头', '').replace('era', '摄像头')}</h1>
+        <h1>{cam.tit?.replace('摄像头', '')?.replace('era', '摄像头')?.replace('。', '')}</h1>
         <Divider />
         <div className={styles.addrWrapper}>
           <div>
@@ -78,14 +89,14 @@ const Cam = ({
           </div>
           <div>
             <Tooltip placement="top" title='资源原地址'>
-              <a href={cam.origin} target='_blank' rel="noreferrer">{cam.origin.replace(/.*www.(.*).com.*/, '$1').toUpperCase()}</a>
+              <a href={cam.origin} target='_blank' rel="noreferrer">{cam.origin?.replace(/.*www.(.*).com.*/, '$1').toUpperCase()}</a>
             </Tooltip>
           </div>
         </div>
       </Card>
       <Card className={styles.camWrapper}>
         <div className={styles.cam}>
-          <iframe width='900' height='500' src={cam.source} title=' ' frameborder="0"></iframe>
+          <iframe width='900' height='500' src={cam.source?.includes('earthcam') ? getSource(cam.source) : cam.source} title=' ' frameborder="0"></iframe>
         </div>
         <div >
           <div style={{
@@ -165,7 +176,7 @@ const Cam = ({
           ))}
         </Row>
       </Card>
-    </>
+    </Spin>
   )
 }
-export default connect(({ cam, app, dispatch }) => ({ recommend: cam.recommend, cam: cam.cam, mainTagList: app.mainTagList, tagList: app.tagList, dispatch }))(Cam)
+export default connect(({ cam, app, dispatch, loading }) => ({ loading, recommend: cam.recommend, cam: cam.cam, mainTagList: app.mainTagList, tagList: app.tagList, dispatch }))(Cam)

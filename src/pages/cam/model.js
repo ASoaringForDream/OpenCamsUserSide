@@ -28,9 +28,13 @@ const Cam = modelExtend(pageModel, {
   },
   effects: {
     *queryCam({ payload }, { put, call }) {
+      const id = payload?.id || store.get('cid')
+      if(!id) {
+        return
+      }
       const user = store.get('user')
       const { errno, errmsg, data } = yield call(queryCam, {
-        id: payload?.id,
+        id,
         uid: user.id
       })
       if(!errno) {

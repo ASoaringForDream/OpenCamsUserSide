@@ -20,6 +20,7 @@
   top: 50%;
   cursor: pointer;
   transform: translateY(-50%);
+  transition: all 0.3s;
 }
 .swiperwrapper .leftBtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
@@ -34,9 +35,11 @@
   top: 50%;
   cursor: pointer;
   transform: translateY(-50%);
+  transition: all 0.3s;
 }
 .swiperwrapper .rightBtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
+  color: white;
 }
 .swiperwrapper .icon {
   display: inline-block;
