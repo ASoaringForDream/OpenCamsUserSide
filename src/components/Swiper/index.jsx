@@ -14,18 +14,21 @@ const Swiper = ({
   dispatch
 }) => {
   const [camsClone, setCamClone] = useState(cams)
+  const swiper = useRef()
+  const [imgLoaded, setImgLoaded] = useState(0)
+  const timer= useRef(null)
+  const [curr, setCurr] = useState(0)
+  let current = useRef(1)
   useEffect(() => {
     let first = _.cloneDeep(cams[0])
     let last = _.cloneDeep(cams[cams.length - 1])
     setCamClone([last, ...cams, first])
+    return () => {
+      clearInterval(timer.current)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const swiper = useRef()
-  const [imgLoaded, setImgLoaded] = useState(0)
-  const [timer, setTimer] = useState(null)
-  const [curr, setCurr] = useState(0)
-  let current = useRef(1)
   const imgLoadedCallBack = () => {
     setImgLoaded(imgLoaded + 1)
   }
@@ -63,7 +66,7 @@ const Swiper = ({
       swiper.current.style.transition = "transform " + animDuration + "ms"
       const length = Math.ceil(-swiper.current.offsetWidth / camsClone.length * current.current)
       swiper.current.style.transform = `translate3d(${length}px,0,0)`
-      setTimer(setInterval(() => handleScroll(), divide))
+      timer.current = setInterval(() => handleScroll(), divide)
     }, 0);
     if (current.current !== 0 && current.current !== camsClone.length - 1) {
       setCurr(current.current - 1)
@@ -76,14 +79,14 @@ const Swiper = ({
   const goNext = () => {
     clearInterval(timer)
     handleScroll()
-    setTimer(setInterval(() => handleScroll(), divide))
+    timer.current = setInterval(() => handleScroll(), divide)
   }
 
   if (imgLoaded === camsClone?.length && !timer) {
     const length = Math.ceil(-swiper.current.offsetWidth / camsClone.length)
     swiper.current.style.transform = `translate3d(${length}px,0,0)`
     swiper.current.style.transition = "transform " + animDuration + "ms"
-    setTimer(setInterval(() => handleScroll(), divide))
+    timer.current = setInterval(() => handleScroll(), divide)
   }
   return (
     <div className={styles.swiperwrapper}>
@@ -104,7 +107,7 @@ const Swiper = ({
             clearInterval(timer)
             current.current = idx
             handleScroll()
-            setTimer(setInterval(() => handleScroll(), divide))
+            timer.current = setInterval(() => handleScroll(), divide)
           }
           return (
             <span className={classnames(styles.circleItem, {
