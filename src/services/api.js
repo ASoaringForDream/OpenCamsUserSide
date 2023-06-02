@@ -18,7 +18,8 @@ const PATH_MAP = {
   queryHistory: '/user/queryhistory',
 
   editUser: 'POST /user/edituser',
-  queryRecommend: '/user/recommend'
+  queryRecommend: '/user/recommend',
+  rePassWord: 'POST /user/repassword'
 }
 
 export default PATH_MAP

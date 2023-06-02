@@ -54,7 +54,7 @@ const Swiper = ({
     }, 0);
   }
   const goBack = () => {
-    clearInterval(timer)
+    clearInterval(timer.current)
     current.current--
     if (current.current <= 0) {
       current.current = camsClone.length - 2
@@ -77,12 +77,12 @@ const Swiper = ({
     }
   }
   const goNext = () => {
-    clearInterval(timer)
+    clearInterval(timer.current)
     handleScroll()
     timer.current = setInterval(() => handleScroll(), divide)
   }
 
-  if (imgLoaded === camsClone?.length && !timer) {
+  if (imgLoaded === camsClone?.length && !timer.current) {
     const length = Math.ceil(-swiper.current.offsetWidth / camsClone.length)
     swiper.current.style.transform = `translate3d(${length}px,0,0)`
     swiper.current.style.transition = "transform " + animDuration + "ms"
@@ -104,7 +104,7 @@ const Swiper = ({
       <div className={styles.circle}>
         {cams?.map((_, idx) => {
           const handleClick = () => {
-            clearInterval(timer)
+            clearInterval(timer.current)
             current.current = idx
             handleScroll()
             timer.current = setInterval(() => handleScroll(), divide)

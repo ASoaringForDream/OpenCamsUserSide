@@ -106,9 +106,9 @@ const Cam = ({
               <NavLink to={`/home?mainTag=${cam.mainTag}`} style={{
                 textIndent: 0
               }}>
-                <Tag color='#87d068'>{mainTagList.find(item => item.id === cam.mainTag).name}</Tag>
+                <Tag color='#87d068'>{mainTagList.find(item => item.id === cam.mainTag)?.name}</Tag>
               </NavLink>
-              {cam.tag.map(i => (
+              {(cam.tag || []).map(i => (
                 <NavLink to={`/home?tag=${i}`} style={{
                   textIndent: 0
                 }}>
@@ -169,7 +169,7 @@ const Cam = ({
       <Card>
         <div className='block-box'>更多推荐</div>
         <Row>
-          {recommend.map(i => (
+          {(recommend || []).map(i => (
             <Col span={12}>
               <GridCard cam={i} mainTagList={mainTagList} tagList={tagList} dispatch={dispatch} />
             </Col>
