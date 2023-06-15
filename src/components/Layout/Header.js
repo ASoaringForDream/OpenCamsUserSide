@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Avatar, Popover, Badge, List, Dropdown, Input } from 'antd'
+import { Layout, Avatar, Popover, Badge, List, Dropdown, Input, Switch, Tooltip } from 'antd'
 import { history, NavLink } from 'umi'
 import { Ellipsis } from 'components'
 import {
@@ -63,7 +63,7 @@ class Header extends PureComponent {
           <span style={{
             display: 'inline-block',
             width: '100%'
-          }} onClick={() => {this.props.onSignOut()}}>退出</span>
+          }} onClick={() => { this.props.onSignOut() }}>退出</span>
         )
       },
     ]
@@ -134,7 +134,11 @@ class Header extends PureComponent {
         </Badge>
       </Popover>
     )
-
+    const handleChange = (val) => {
+      const canvasSnow = document.getElementById("canvas_sakura");
+      canvasSnow.width = val ? window.innerWidth : 0;
+      canvasSnow.height = val ? window.innerHeight: 0;
+    }
     return (
       <Layout.Header
         className={classnames(styles.header, {
@@ -163,12 +167,16 @@ class Header extends PureComponent {
             </div>
           </div>
           <div className={styles.rightContainer}>
+            <Tooltip title='樱花特效' placement='bottom'>
+              <Switch defaultChecked checkedChildren="开启" unCheckedChildren="关闭" onChange={handleChange} />
+            </Tooltip>
             <Search
               placeholder="请输入搜索内容"
               allowClear
               onSearch={this.onSearch}
               style={{
                 width: 200,
+                marginLeft: 10
               }}
             />
             <TopMenu />
